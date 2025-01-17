@@ -1,0 +1,18 @@
+<launch>
+    <!-- Define parameter defaults -->
+    <arg name="plane_distance_threshold" default="0.3" />
+    <arg name="mean_k" default="10" />
+    <arg name="stddev_mul_thresh" default="3.0" />
+
+    <!-- Launch the LiDAR Filtering Node -->
+    <node pkg="lidar_filtering_assignment" type="lidar_filtering_node" name="lidar_filtering" output="screen">
+        <!-- Pass parameters from args to node -->
+        <param name="lidar_topic" value="/mbuggy/os3/points" />
+        <param name="plane_distance_threshold" value="$(arg plane_distance_threshold)"/>
+        <param name="mean_k" value="$(arg mean_k)"/>
+        <param name="stddev_mul_thresh" value="$(arg stddev_mul_thresh)"/>
+    </node>
+
+    <!-- Launch RViz with custom config -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lidar_filtering_assignment)/config/lidar_filter.rviz" />
+</launch>
