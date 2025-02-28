@@ -1,4 +1,4 @@
-# LiDAR Filtering Assignment
+# 3D LiDAR Filtering
 
 This ROS package removes ground and noise points from a LiDAR point cloud while preserving important features (e.g., buildings, trees).
 
